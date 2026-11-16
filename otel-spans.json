@@ -2,33 +2,33 @@
   "spans": [
     {
       "name": "orderkit.snapshot",
-      "durationMs": 0.6034,
-      "startTimeUnixNano": "1794807628881000000",
-      "endTimeUnixNano": "1794807628881603400"
+      "durationMs": 4.0738,
+      "startTimeUnixNano": "1794807870311000000",
+      "endTimeUnixNano": "1794807870315073800"
     },
     {
       "name": "orderkit.process.retail",
-      "durationMs": 0.1875,
-      "startTimeUnixNano": "1794807628882000000",
-      "endTimeUnixNano": "1794807628882187500"
+      "durationMs": 2.0146,
+      "startTimeUnixNano": "1794807870317000000",
+      "endTimeUnixNano": "1794807870319014600"
     },
     {
       "name": "orderkit.process.wholesale",
-      "durationMs": 0.058,
-      "startTimeUnixNano": "1794807628882000000",
-      "endTimeUnixNano": "1794807628882058000"
+      "durationMs": 0.598,
+      "startTimeUnixNano": "1794807870320000000",
+      "endTimeUnixNano": "1794807870320598000"
     },
     {
       "name": "orderkit.price",
-      "durationMs": 0.0823,
-      "startTimeUnixNano": "1794807628882000000",
-      "endTimeUnixNano": "1794807628882082300"
+      "durationMs": 0.8078,
+      "startTimeUnixNano": "1794807870321000000",
+      "endTimeUnixNano": "1794807870321807800"
     },
     {
       "name": "orderkit.run",
-      "durationMs": 1.7252,
-      "startTimeUnixNano": "1794807628881000000",
-      "endTimeUnixNano": "1794807628882725200"
+      "durationMs": 12.1926,
+      "startTimeUnixNano": "1794807870310000000",
+      "endTimeUnixNano": "1794807870322192600"
     }
   ]
 }

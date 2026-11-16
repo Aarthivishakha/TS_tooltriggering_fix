@@ -22,7 +22,7 @@
     "packages/*",
     "services/*"
   ],
-  "toolsWired": 49,
+  "toolsWired": 53,
   "bundlerNote": "esbuild 0.28.2 standalone (current major, engines >=18). Transform and linker are both esbuild.",
   "coveragePrimary": "c8",
   "coverageCrossCheck": "nyc + ts-node",

@@ -74,11 +74,11 @@ jobs:
         run: |
           bash "Tool Triggering (Synthetic Data)/ts-prune/run_ts_prune.sh"
           bash "Tool Triggering (Synthetic Data)/knip/run_knip.sh"
-          node "Tool Triggering (Synthetic Data)/eslint-scope/run_eslint_scope.js"
+          node_modules/.bin/ts-node "Tool Triggering (Synthetic Data)/eslint-scope/run_eslint_scope.ts"
 
       - name: Structure
         run: |
-          node "Tool Triggering (Synthetic Data)/ts-morph/run_ts_morph.js"
+          node_modules/.bin/ts-node "Tool Triggering (Synthetic Data)/ts-morph/run_ts_morph.ts"
           bash "Tool Triggering (Synthetic Data)/madge/run_madge.sh"
           bash "Tool Triggering (Synthetic Data)/dependency-cruiser/run_depcruise.sh"
 
@@ -112,7 +112,7 @@ jobs:
         run: bash "Tool Triggering (Synthetic Data)/opentelemetry/run_otel.sh"
 
       - name: History mining
-        run: python3 "Tool Triggering (Synthetic Data)/pydriller/run_pydriller.py"
+        run: node_modules/.bin/ts-node "Tool Triggering (Synthetic Data)/pydriller/run_pydriller.ts"
 
       - name: Complexity (tokeniser cross-check)
         run: |

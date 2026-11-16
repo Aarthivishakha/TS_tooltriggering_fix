@@ -8,7 +8,7 @@ export const tracer = trace.getTracer("orderkit-domain", "1.0.0");
  *
  * When no SDK has been bootstrapped -- which is every test run -- the OTEL API
  * hands back a no-op tracer and this reduces to a plain function call. When
- * tools/opentelemetry/otel-bootstrap.js HAS registered a span processor, each
+ * Tool Triggering (Synthetic Data)/opentelemetry/otel-bootstrap.ts HAS registered a span processor, each
  * call produces one exported span, which is what makes the span count in
  * reports/otel-spans.json a real measurement rather than a constant zero.
  */
