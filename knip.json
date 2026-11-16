@@ -1,7 +1,10 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["packages/domain/src/index.ts", "tests/**/*.spec.ts"],
+  "entry": ["packages/domain/src/index.ts", "tests/**/*.spec.ts", "eslint.config.mjs", "vitest.config.ts"],
   "project": ["packages/domain/src/**/*.ts"],
+  "eslint": false,
+  "vite": false,
+  "vitest": false,
   "ignore": ["Tool Triggering (Synthetic Data)/**", "dist/**", "build/**"],
   "ignoreBinaries": ["biome", "depcruise", "grype", "lizard"],
   "ignoreExportsUsedInFile": true,

@@ -2,7 +2,7 @@
   "extension": [".ts"],
   "include": ["packages/domain/src/**/*.ts"],
   "exclude": ["packages/domain/src/analysis/**", "tests/**", "Tool Triggering (Synthetic Data)/**", "dist/**", "build/**"],
-  "reporter": ["text", "json-summary"],
+  "reporter": ["text", "json-summary", "json", "lcov", "cobertura"],
   "report-dir": "coverage-nyc",
   "temp-dir": ".nyc_output",
   "all": true,

@@ -27,14 +27,10 @@ describe("tracing", () => {
   });
 
   it("passes attributes of every accepted primitive type", () => {
-    const out = withSpan(
-      "probe.attributes",
-      { str: "a", num: 1, bool: true },
-      (span) => {
-        expect(span).to.be.an("object");
-        return "ok";
-      },
-    );
+    const out = withSpan("probe.attributes", { str: "a", num: 1, bool: true }, (span) => {
+      expect(span).to.be.an("object");
+      return "ok";
+    });
     expect(out).to.equal("ok");
   });
 

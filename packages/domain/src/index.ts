@@ -17,15 +17,37 @@ export * from "./models/order-record";
 /** Deterministic sample book -- the same input every run, so tool output is comparable. */
 export function sampleOrders(): OrderRecord[] {
   return [
-    { id: "ORD-1001", channel: "retail", tier: "gold",
-      lines: [{ sku: "SKU-A", quantity: 4, unitPrice: 25 }], placedAt: "2026-01-05T09:00:00.000Z" },
-    { id: "ORD-1002", channel: "retail", tier: "standard",
-      lines: [{ sku: "SKU-B", quantity: 30, unitPrice: 12.5 }], placedAt: "2026-01-05T10:15:00.000Z" },
-    { id: "ORD-1003", channel: "wholesale", tier: "silver",
-      lines: [{ sku: "SKU-C", quantity: 150, unitPrice: 8 },
-              { sku: "SKU-D", quantity: 40, unitPrice: 19.99 }], placedAt: "2026-01-06T08:30:00.000Z" },
-    { id: "ORD-1004", channel: "partner", tier: "bronze",
-      lines: [{ sku: "SKU-E", quantity: 12, unitPrice: 44.5 }], placedAt: "2026-01-06T14:45:00.000Z" },
+    {
+      id: "ORD-1001",
+      channel: "retail",
+      tier: "gold",
+      lines: [{ sku: "SKU-A", quantity: 4, unitPrice: 25 }],
+      placedAt: "2026-01-05T09:00:00.000Z",
+    },
+    {
+      id: "ORD-1002",
+      channel: "retail",
+      tier: "standard",
+      lines: [{ sku: "SKU-B", quantity: 30, unitPrice: 12.5 }],
+      placedAt: "2026-01-05T10:15:00.000Z",
+    },
+    {
+      id: "ORD-1003",
+      channel: "wholesale",
+      tier: "silver",
+      lines: [
+        { sku: "SKU-C", quantity: 150, unitPrice: 8 },
+        { sku: "SKU-D", quantity: 40, unitPrice: 19.99 },
+      ],
+      placedAt: "2026-01-06T08:30:00.000Z",
+    },
+    {
+      id: "ORD-1004",
+      channel: "partner",
+      tier: "bronze",
+      lines: [{ sku: "SKU-E", quantity: 12, unitPrice: 44.5 }],
+      placedAt: "2026-01-06T14:45:00.000Z",
+    },
   ];
 }
 
@@ -43,21 +65,28 @@ export function run(): RunSummary {
   // tools/grype/PLANTED-CVES.md.
   return withSpan("orderkit.run", { "orderkit.stage": "pipeline" }, () => {
     const orders = withSpan("orderkit.snapshot", { "orderkit.stage": "load" }, () =>
-      snapshot(sampleOrders()));
+      snapshot(sampleOrders()),
+    );
     const service = new OrderService();
     const retail = new RetailOrderProcessor(service);
     const wholesale = new WholesaleOrderProcessor(service);
 
-    withSpan("orderkit.process.retail",
+    withSpan(
+      "orderkit.process.retail",
       { "orderkit.channel": "retail", "orderkit.orders": orders.length },
-      () => retail.process(orders));
-    withSpan("orderkit.process.wholesale",
+      () => retail.process(orders),
+    );
+    withSpan(
+      "orderkit.process.wholesale",
       { "orderkit.channel": "wholesale", "orderkit.orders": orders.length },
-      () => wholesale.process(orders));
+      () => wholesale.process(orders),
+    );
 
-    const priced = withSpan("orderkit.price",
+    const priced = withSpan(
+      "orderkit.price",
       { "orderkit.orders": orders.length },
-      () => service.priceAll(orders).priced);
+      () => service.priceAll(orders).priced,
+    );
 
     return {
       runtime: process.version,
