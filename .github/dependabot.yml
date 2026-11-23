@@ -1,0 +1,16 @@
+# Weekly dependency update checks. Config only: it changes no dependency version.
+# The vulnerable pins in package.json (axios 0.21.0, lodash 4.17.15, minimist 1.2.5,
+# node-fetch 2.6.0, tar 6.1.0) are intentional test data; one open PR at a time keeps
+# any bump proposals reviewable and never merges anything by itself.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 1
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 1
