@@ -88,3 +88,10 @@ function stampRegion(region: string): string { return `region:${region}`; }
 export function isBulkTier(tier: string): boolean {
   return tier === "gold" || tier === "silver";
 }
+
+/** flat discount per tier */
+export function tierDiscount(tier: string): number {
+  if (tier === "gold") return 0.15;
+  if (tier === "silver") return 0.1;
+  return 0;
+}

@@ -160,3 +160,11 @@ describe("analysis fixtures: bulk tier", () => {
     expect(isBulkTier("bronze")).to.equal(false);
   });
 });
+
+describe("analysis fixtures: tier discount", () => {
+  it("returns the discount per tier", () => {
+    expect(tierDiscount("gold")).to.equal(0.15);
+    expect(tierDiscount("silver")).to.equal(0.1);
+    expect(tierDiscount("bronze")).to.equal(0);
+  });
+});
