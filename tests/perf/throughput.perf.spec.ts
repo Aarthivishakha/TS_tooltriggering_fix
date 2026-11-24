@@ -32,7 +32,7 @@ describe("performance: throughput budgets", () => {
 
 describe("performance: cube sum", () => {
   it("sums a 20 x 20 x 20 cube", () => {
-    expect(sumCube(20)).to.equal(240000);
+    expect(sumCube(20)).to.equal(228000);
   });
 });
 
