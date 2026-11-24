@@ -188,3 +188,38 @@ branch, and the architecture.
 
 <!-- dummy PR 2026-11-05 11:16:37 -->
 <!-- dummy PR 2026-11-17 12:29:40 -->
+
+
+## Metric test data map
+
+This branch carries planted test data so each Testable whitebox metric has something to measure. The table says which files feed which metric. "Seen in run" is the value from run `b59c70b4` (commit `308b202`); a dash means the metric had no value in that run.
+
+| Data | Files | Metrics it feeds | Seen in run |
+|---|---|---|---|
+| IaC with deliberate mistakes (open firewall, public bucket, unencrypted disk and database) | `infra/terraform/main.tf`, `infra/kubernetes/deployment.yaml`, `infra/cloudformation/stack.yaml`, `.checkov.yaml`, `.checkov/policies/*.yaml` | IaC Security: Open Network Access, Public Exposure Risk, Storage Encryption Gap, CIS Compliance Gap. IaC Security Scanning: the four detection rows | 70, 60, 50, 50 and 1, 2, 1, 1 |
+| High complexity function | `packages/domain/src/analysis/complexity-sample.ts` | Cyclomatic Complexity, Cognitive Complexity | had a value |
+| Call chain of depth 5 and fan-out of 6 | `call-graph-sample.ts` | call graph and path metrics | - |
+| Dead code | `dead-code.ts` | Dead Code Detection, unused exports | - |
+| Lint violations | `lint-violations.ts` | Lint / Rule Violations | had a value |
+| Insecure patterns (eval, shell, weak regex, timing compare) and taint flows | `sast-fixture.ts`, `taint-fixture.ts` | Static Vulnerabilities (SAST) | 10.22, 66.67, 31.25 |
+| Personal data in log statements, sensitive values reaching output, SQL concatenation, TLS off, md5, shell spawn | `sensitive-data-fixture.ts` | PII in Log Statements, SAST Data Flow Security | 10 |
+| Performance anti-patterns (nested loops, push in loops, fetch in a loop, shared state in Promise.all) | `perf-fixture.ts` | Performance Static Analysis (5 metrics) | 60 to 100 |
+| Fake hard-coded secrets | `secrets-fixture.ts` | Hardcoded Secret Detection and Scan | 50, 1 |
+| Pre-commit hook configuration | `.pre-commit-config.yaml` | Pre-Commit Secret Prevention | 0 |
+| Circular imports | `cycle-a.ts`, `cycle-b.ts`, `scripts/cycle-a.cjs`, `scripts/cycle-b.cjs` | Circular Dependency Detection | 70 |
+| Invented student records | `student-pii-fixture.ts`, `docs/student-records.md` | PII in Codebase Detection | 0 |
+| Old vulnerable dependency pins and one unused package (`left-pad`) | `package.json`, `bun.lock` | Dependency Risk (SCA): Vulnerability and Outdated Dependency Detection, Unused Dependency Detection | 111 and 0 |
+| Dependabot, Renovate and a scheduled security workflow | `.github/dependabot.yml`, `renovate.json`, `.github/workflows/scheduled-security.yml` | Continuous Dependency Monitoring | - |
+| Tests that run the planted code | `tests/analysis.spec.ts`, `tests/analysis-extra.spec.ts` | Statement, Branch, Path and Data Flow coverage, Mutation Score | - |
+| Performance tests | `tests/perf/throughput.perf.spec.ts` | Performance Test Code Coverage | - |
+| Git history: five edits to performance and production files with tests, and a fake secret committed then removed (commits `8b540ce`, `6fc2a22`) | git log | Code Churn rows, Code Churn in Performance-Critical Paths, Secrets in Git History | partial |
+
+### What no repository data can fix
+
+- Test-based metrics (about 45 rows) stay empty if the platform cannot install this Bun repository and run the tests.
+- Secrets in Git History and Secrets in Repo History are not scheduled on a manual run; the platform runs trufflehog weekly.
+- Privileged Access Audit and the SOC 2 settings depend on GitHub settings, not files.
+- Four Embedded rows (C/C++ only) appear in TypeScript reports because of a platform bug. They have no data.
+- The platform's old report has 131 metrics. Many were retired in qa and the weights sheet may not list every metric.
+
+All secrets, names and numbers in the test data are invented.
