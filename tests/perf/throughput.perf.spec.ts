@@ -41,3 +41,9 @@ describe("performance: pair count", () => {
     expect(pairCount([1, 2, 3], [4, 5])).to.equal(6);
   });
 });
+
+describe("performance: chunking", () => {
+  it("splits a list into groups", () => {
+    expect(chunk([1, 2, 3, 4, 5], 2)).to.deep.equal([[1, 2], [3, 4], [5]]);
+  });
+});

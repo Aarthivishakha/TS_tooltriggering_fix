@@ -72,3 +72,12 @@ export function sumCube(size: number): number {
 export function pairCount(left: number[], right: number[]): number {
   return left.length * right.length;
 }
+
+/** batches the lookups of loadPrices into groups to cut round trips */
+export function chunk<T>(items: T[], size: number): T[][] {
+  const groups: T[][] = [];
+  for (let i = 0; i < items.length; i += size) {
+    groups.push(items.slice(i, i + size));
+  }
+  return groups;
+}
