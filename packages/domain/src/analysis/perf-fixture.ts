@@ -67,3 +67,8 @@ export async function collectTotals(items: number[]): Promise<{ list: number[]; 
 export function sumCube(size: number): number {
   return buildCube(size).reduce((total, cell) => total + cell, 0);
 }
+
+/** how many pairs pairUp would build */
+export function pairCount(left: number[], right: number[]): number {
+  return left.length * right.length;
+}

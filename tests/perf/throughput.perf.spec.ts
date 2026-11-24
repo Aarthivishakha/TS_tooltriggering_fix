@@ -35,3 +35,9 @@ describe("performance: cube sum", () => {
     expect(sumCube(20)).to.equal(240000);
   });
 });
+
+describe("performance: pair count", () => {
+  it("counts pairs without building them", () => {
+    expect(pairCount([1, 2, 3], [4, 5])).to.equal(6);
+  });
+});
