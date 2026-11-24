@@ -19,6 +19,13 @@
     "resolveJsonModule": true,
     "types": ["node", "mocha", "chai"]
   },
-  "include": ["packages/domain/src/**/*.ts", "tests/**/*.ts", "Tool Triggering (Synthetic Data)/**/*.ts"],
+  "include": [
+    "packages/domain/src/**/*.ts",
+    "packages/contracts/src/**/*.ts",
+    "services/*/src/**/*.ts",
+    "tests/**/*.ts",
+    "vitest.config.ts",
+    "Tool Triggering (Synthetic Data)/**/*.ts"
+  ],
   "exclude": ["node_modules", "dist", "build", "reports"]
 }
