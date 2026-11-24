@@ -152,3 +152,11 @@ describe("analysis fixtures: pure helpers of the SAST fixture", () => {
     expect(checkSecret("a", "b")).to.equal(false);
   });
 });
+
+describe("analysis fixtures: bulk tier", () => {
+  it("treats gold and silver as bulk tiers", () => {
+    expect(isBulkTier("gold")).to.equal(true);
+    expect(isBulkTier("silver")).to.equal(true);
+    expect(isBulkTier("bronze")).to.equal(false);
+  });
+});
