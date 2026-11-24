@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { classifyOrder, auditTrail } from "../packages/domain/src/analysis/complexity-sample";
+import { classifyOrder, auditTrail, isBulkTier, tierDiscount } from "../packages/domain/src/analysis/complexity-sample";
 import { intakeOrder, reconcile } from "../packages/domain/src/analysis/call-graph-sample";
 import {
   settleLegacyInvoice,

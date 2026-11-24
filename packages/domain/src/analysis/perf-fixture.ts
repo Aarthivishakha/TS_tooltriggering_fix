@@ -62,3 +62,8 @@ export async function collectTotals(items: number[]): Promise<{ list: number[]; 
   );
   return { list, sum: shared.sum };
 }
+
+/** sums the cells of a cube built by buildCube */
+export function sumCube(size: number): number {
+  return buildCube(size).reduce((total, cell) => total + cell, 0);
+}

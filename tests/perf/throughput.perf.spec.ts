@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { buildCube, pairUp } from "../../packages/domain/src/analysis/perf-fixture";
+import { buildCube, pairUp, sumCube, pairCount, chunk } from "../../packages/domain/src/analysis/perf-fixture";
 import { classifyOrder } from "../../packages/domain/src/analysis/complexity-sample";
 
 // Performance tests: they exercise the performance-critical fixtures under a time budget,
@@ -27,5 +27,11 @@ describe("performance: throughput budgets", () => {
       classifyOrder("retail", "gold", i % 700, i, i % 2 === 0, "us");
     }
     expect(Date.now() - started).to.be.lessThan(1000);
+  });
+});
+
+describe("performance: cube sum", () => {
+  it("sums a 20 x 20 x 20 cube", () => {
+    expect(sumCube(20)).to.equal(240000);
   });
 });
